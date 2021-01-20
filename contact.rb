@@ -56,6 +56,7 @@ class Contact
     when 3 then @email = new_value
     when 4 then @note = new_value
     end
+    return self
   end
 
 
@@ -111,12 +112,13 @@ class Contact
 
   # This method should delete all of the contacts
   def self.delete_all
-    @@contacts = []
+    # @@contacts = []
+    @@contacts.clear
   end
 
 
   def full_name
-
+    return "#{@first_name} #{@last_name}"
   end
 
 

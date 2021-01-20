@@ -4,7 +4,6 @@ require "./contact"
 class CRM
 
   def initialize
-    main_menu
   end
 
 
@@ -61,7 +60,7 @@ class CRM
     puts "Please enter the contact ID of the contact you would like to modify:"
     id = gets.to_i
     puts "You chosen the following contact: "
-    p Contact.find(id)
+    p unmodified_contact = Contact.find(id)
     puts "Which attribute would you like to update?"
     puts "[1] First name"
     puts "[2] Last name"
@@ -70,9 +69,9 @@ class CRM
     attribute = gets.to_i
     print "Please enter the new value: "
     new_value = gets.chomp
-    Contact.find(id).update(attribute, new_value)
+    modified_contact = unmodified_contact.update(attribute, new_value)
     puts "Your contact now has the information: "
-    p Contact.find(id)
+    p modified_contact
   end
 
 
@@ -84,8 +83,8 @@ class CRM
       Contact.delete_all
     else
       puts "You chosen the following contact: "
-      p Contact.find(id)
-      Contact.find(id).delete
+      p contact_for_deleting = Contact.find(id)
+      contact_for_deleting.delete
     end
     puts "Your contact list is now: "
     p Contact.all
